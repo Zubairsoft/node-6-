@@ -4,7 +4,8 @@ const Schema = mongoose.Schema;
 const profile_schema = new Schema({
 
     name: { type: String, required: true },
-    description: { type: String, required: true },
+    userName:{ type: String, required: true },
+    description: { type: String},
     email: { type: String, require: true, default: 0 },
     addres: { type: String, require: true },
     image: { type: String, require:true },

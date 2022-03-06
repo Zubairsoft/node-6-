@@ -56,13 +56,14 @@ const upload = multer({
 
 
 
-
+// routing for insert data
 app.post("/home", upload.fields([{ name: 'image', maxCount: 1 }, { name: 'cv', maxCount: 8 }]), async (req, res) => {
 
 
     const p = new profile({
         name: req.body.name,
         email: req.body.email,
+        userName:req.body.userName,
         addres: req.body.addres,
         description: req.body.description,
         image: req.files['image'][0].filename,
@@ -77,15 +78,16 @@ app.post("/home", upload.fields([{ name: 'image', maxCount: 1 }, { name: 'cv', m
 
     });
 
-    console.log("data inserted successful");
+   // console.log("data inserted successful"); For ensure that data store in database
     res.redirect('/home');
     res.end();
 
 });
 
+//routing for display display data from database
 app.get('/home', (req, res) => {
-    profile.find().then((reslut) => {
-        res.render('create_profile', { profiles: reslut });
+    profile.find().then((result) => {
+        res.render('create_profile', { profiles: result });
     });
 
 });
